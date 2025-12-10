@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>VetClaims | OpsArtica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/opsartica-unified.css"/>
+
+<style>
+  :root{
+    --navy:#0D1B2A; --gold:#C9A227; --muted:#6C757D; --line:#EAEAEA; --paper:#fff;
+    --max:1120px; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--navy);
+    line-height:1.6;
+    background:var(--paper);
+    position:relative;
+  }
+  img{max-width:100%; display:block}
+  a{color:var(--navy); text-decoration:none}
+  .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+  /* Artistic background */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    url("assets/vetclaims/assets/bg_ink_gold.png") center/cover no-repeat,
+    rgba(0,0,0,.45);              /* overlay as separate layer */
+  background-blend-mode: normal, multiply; /* multiply darkens image */
+  filter: contrast(1.03) saturate(1.02);
+}
+
+  /* Buttons */
+  .btn{display:inline-flex; align-items:center; justify-content:center; padding:12px 16px; border-radius:12px; font-weight:700; text-decoration:none}
+  .btn-primary {
+    background: linear-gradient(180deg, #ffd700 0%, #e6b800 40%, #c9a227 60%, #ffd700 100%);
+    color: #151515;
+    border: 1px solid #b38f00;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.6),
+      inset 0 -2px 4px rgba(0,0,0,0.2),
+      0 4px 8px rgba(0,0,0,0.25);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+    transition: all 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(180deg, #ffe066 0%, #ffcc33 40%, #cc9900 60%, #ffdb4d 100%);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.8),
+      inset 0 -2px 4px rgba(0,0,0,0.25),
+      0 6px 12px rgba(0,0,0,0.3);
+  }
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.3),
+      0 2px 4px rgba(0,0,0,0.2);
+  }
+  .btn-steel{
+    color:#0D1B2A; border:1px solid #b2b8c2;
+    background:linear-gradient(180deg,#f7f9fc 0%,#e4e9ef 45%,#cfd6de 55%,#eef2f6 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.75), inset 0 -1px 0 rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.08);
+  }
+  .btn-steel:hover{
+    background:linear-gradient(180deg,#ffffff 0%,#e9edf2 45%,#d5dce3 55%,#f2f5f8 100%);
+  }
+
+  /* Hero */
+  .hero{padding:0 0 0px; border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center}
+.eyebrow {
+  font-size:1rem;              /* was .8rem */
+  letter-spacing:.15em;         /* optional: a little less spacing so it doesn’t look too spread out */
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;color:#fff;
+}
+  h1{font-family:"Merriweather",serif; font-weight:900; line-height:1.12; margin:.35rem 0 .6rem; font-size:clamp(30px,4.5vw,52px)}
+  .lead{font-size:clamp(16px,1.6vw,19px); color:#fff; max-width:60ch}
+  .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+  .hero-art{border:0; padding:0; border-radius:0; display:flex; justify-content:center; background:transparent}
+  .hero-art img{width:85%; max-width:520px}
+
+  /* Sections */
+  section.section{padding:32px 0}
+  h2{font-family:"Merriweather",serif; font-weight:900; font-size:clamp(24px,3.1vw,34px); margin:0 0 10px}
+  .lede{color:#223042; max-width:70ch}
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:28px}
+  .card{border:1px solid var(--line); border-radius:var(--radius); padding:20px; background:#fff}
+  .list{margin:10px 0 0 0; padding:0 0 0 18px}
+  .cards-3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px}
+  .offer h3{font-family:"Merriweather",serif; font-size:1.25rem; margin:.6rem 0 .2rem}
+
+  /* Responsive */
+  @media (max-width:1024px){ .cards-3{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:900px){
+    .hero-grid,.grid-2{grid-template-columns:1fr}
+    .hero-art{order:-1}
+    .hero-art img{width:68%}
+    .cards-3{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="oa-header oa-header-light">
+  <div class="brand">
+    <img src="assets/vetclaims/assets/logo.png" alt="VetClaims logo">
+    <strong>VetClaims</strong>
+  </div>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#bio">The Veteran</a></li>
+      <li><a class="btn btn-burgundy" href="./">OpsArtica Home</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Evidence Support • Veteran-Led</div>
+      <h1>Clear, credible evidence to support your service connection</h1>
+      <p class="lead">Naval Academy graduate, commissioned Surface Warfare Officer, and disabled veteran applying research discipline to advocacy. Evidence-driven and written in language the VA accepts.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="VetClaims-ComingSoon.html">Go To Store</a>
+        <a class="btn btn-steel" href="#offer">What I provide</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img src="assets/vetclaims/assets/logo.png" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container grid-2">
+    <div class="card">
+      <h2>Why VetClaims</h2>
+      <p class="lede">Claims succeed when evidence is clear and the record speaks the VA’s language. I have been through the VA wringer. I've worked to understand the standards of proof and the weight of documentation. My education, training, and experience equips me to bridge military service with rigorous, evidence driven advocacy.</p>
+      <ul class="list">
+       <li>Commissioned officer experience with operational leadership in the Fleet</li>  
+       <li>Doctoral education as a Scholar Practitioner with academic research specialty</li>
+       <li>Direct knowledge of how the VA evaluate reports, evidence, and compliance</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>How I help</h2>
+      <p class="lede">I translate peer-reviewed research and VA standards into concise, defensible documentation tailored to your case and your provider.</p>
+      <ul class="list">
+        <li>Evidence-based causal opinion letters (when both diagnoses are on record)</li>
+        <li>Nexus letter toolkit (38 CFR, M21-1, 38 CFR 3.102)</li>
+        <li>DBQ support organized in VA-familiar terms</li>
+        <li>Aligned to 38 CFR, M21-1 standards of proof, and reasonable doubt</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="offer">
+  <div class="container">
+    <h2>What I provide</h2>
+    <div class="cards-3" style="margin-top:14px">
+      <article class="card offer">
+        <img src="assets/vetclaims/assets/card_opinion_letter.png" alt="Evidence-based Causal Letter">
+        <h3>Evidence-based Causal Letter</h3>
+        <p>For veterans with both diagnoses documented. The letter presents a clear, evidence-backed causal opinion, supported by legal precedent, and written from a behavioral science perspective. It can be submitted in a claim in place of a medical nexus, though an Independent Medical Opinion is still advised.</p>
+      </article>
+      <article class="card offer">
+        <img src="assets/vetclaims/assets/card_nexus_toolkit.png" alt="Nexus Letter Toolkit">
+        <h3>Nexus Letter Toolkit</h3>
+        <p>A clear framework for private medical providers. The template explains secondary service connection under 38 CFR, outlines M21-1 standards of proof, and applies the reasonable doubt rule. It guides providers to connect diagnoses, symptoms, and opinion in language the VA recognizes. </p>
+      </article>
+      <article class="card offer">
+        <img src="assets/vetclaims/assets/card_dbq_support.png" alt="DBQ Support">
+        <h3>DBQ Support</h3>
+        <p>A streamlined template for the VA’s Disability Benefits Questionnaire. Providers can enter diagnoses, document symptoms, and state an opinion in clear language the VA accepts, making the process more efficient and reliable.</p>
+      </article>
+    </div>
+    <div style="margin-top:16px">
+      <a class="btn btn-primary" href="VetClaims-ComingSoon.html">Start your claim support</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bio">
+  <div class="container grid-2">
+    <div class="card"><img src="assets/vetclaims/assets/founder_portrait.png" alt="Calvin Vernon portrait"></div>
+    <div class="card">
+      <h2>Dr. Calvin Vernon — U.S. Navy Veteran</h2>
+      <p class="lede">My professional path began in uniform. As a commissioned officer I served aboard forward-deployed warships and later supported Navy personnel operations. After leaving active service, I pursued advanced education in psychology and organizational systems. That work connected the precision of engineering with the human factors that drive performance and resilience. Today I continue to unite operational leadership with scientific rigor, guided by the same principles of mission success and accountability.</p>
+      <ul class="list">
+        <li>Surface Warfare Officer with command-level responsibilities</li>
+        <li>Graduate of the United States Naval Academy with a degree in Systems Engineering</li>
+        <li>Doctorate in Psychology, bridging applied science and organizational development</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="oa-footer oa-footer-light">
+  <div class="oa-footer-row">
+    <div class="oa-footer-left">
+      <img src="assets/logos/opsartica-logo-primary.png" alt="OpsArtica logo">
+      <span>An OpsArtica Project</span>
+    </div>
+    <div class="oa-footer-mid">© 2025 Calvin Vernon</div>
+    <div class="oa-footer-right">
+      <a href="./">OpsArtica Home</a>
+    

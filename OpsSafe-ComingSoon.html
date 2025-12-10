@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpsSafe – Coming Soon | OpsArtica</title>
+  <meta name="description" content="OpsSafe is coming soon. Building safer workplaces through culture and commitment.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/opssafe/assets/logo-opsafe.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Unified Brand CSS -->
+  <link rel="stylesheet" href="css/opsartica-unified.css">
+  
+  <style>
+    :root {
+      --brand-primary: #770737;
+      --brand-gold: #C9A227;
+      --text-dark: #1a1a2e;
+      --text-muted: #6c757d;
+      --bg-light: #f8f9fa;
+      --white: #ffffff;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Coming Soon Hero */
+    .coming-soon {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .coming-soon::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(119, 7, 55, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .coming-soon::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .coming-soon-content {
+      text-align: center;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .brand-logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 24px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    .brand-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    
+    .brand-name span {
+      color: var(--brand-primary);
+    }
+    
+    .tagline {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 2px solid var(--brand-gold);
+      color: var(--text-dark);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(201, 162, 39, 0.15);
+    }
+    
+    .status-badge::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--brand-gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    
+    .description {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--brand-primary);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(119, 7, 55, 0.25);
+    }
+    
+    .btn-home:hover {
+      background: #5c0529;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(119, 7, 55, 0.35);
+    }
+    
+    .btn-home svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .btn-notify {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--white);
+      color: var(--text-dark);
+      text-decoration: none;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-notify:hover {
+      border-color: var(--brand-primary);
+      color: var(--brand-primary);
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+      .coming-soon {
+        padding: 40px 20px;
+      }
+      
+      .brand-logo {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-home, .btn-notify {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Unified OpsArtica Header -->
+  <header class="oa-header">
+    <div class="brand">
+      <img src="assets/opssafe/assets/logo-opsafe.png" alt="OpsSafe logo">
+      <strong>OpsSafe</strong>
+    </div>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a class="btn btn-burgundy" href="./">OpsArtica Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Coming Soon Content -->
+  <section class="coming-soon">
+    <div class="coming-soon-content">
+      <img src="assets/opssafe/assets/logo-opsafe.png" alt="OpsSafe" class="brand-logo">
+      <h1 class="brand-name">Ops<span>Safe</span></h1>
+      <p class="tagline">Building safer workplaces through culture and commitment</p>
+      
+      <div class="status-badge">Coming Soon</div>
+      
+      <p class="description">
+        The OpsSafe platform is currently under development. We're building tools to help organizations measure, visualize, and improve Safety Climate, Commitment, and Compliance with the research-backed 3C Framework.
+      </p>
+      
+      <div class="cta-group">
+        <a href="./" class="btn-home">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to OpsArtica
+        </a>
+        <a href="mailto:calvin@opsartica.com?subject=OpsSafe%20Launch%20Notification" class="btn-notify">
+          Notify Me at Launch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified OpsArtica Footer -->
+  <footer class="oa-footer">
+    <div class="oa-footer-row">
+      <div class="oa-footer-left">
+        <img src="assets/logos/opsartica-logo-primary.png" alt="OpsArtica logo">
+        <span>An OpsArtica Project</span>
+      </div>
+      <div class="oa-footer-mid">© 2025 Calvin Vernon</div>
+      <div class="oa-footer-right">
+        <a href="./">OpsArtica Home</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
