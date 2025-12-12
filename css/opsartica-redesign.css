@@ -1,5 +1,6 @@
-/* ===== OpsArtica — Redesign (SDT Explore) — rev06 =====
-   - Title + tagline tooltips (auto-size, right-aligned)
+/* ===== OpsArtica — Redesign (SDT Explore) — rev07 =====
+   - Mobile-responsive SDT grid (falls back to card grid)
+   - Title + tagline tooltips (auto-size, right-aligned on desktop)
    - Transparent icons + soft shadow + strict clamp
    - Hovers always on top, overflow allowed
    - Header/Hero/Contact/Footer preserved
@@ -72,13 +73,13 @@ a{color:var(--fg); text-decoration:none}
 #explore h2{font-size:clamp(1.6rem,3vw,2.2rem); margin:24px 0 8px}
 .muted{color:#d7dbe2}
 
-/* ===== SDT grid ===== */
+/* ===== SDT grid — DESKTOP (positioned icons over background) ===== */
 .sdt-grid{
   position:relative; margin:8px 0 40px; aspect-ratio:1563 / 768;
-  background-image:url('../assets/landing_Portfolio.redesign.explore.png'); /* path relative to css/ */
+  background-image:url('../assets/landing_Portfolio.redesign.explore.png');
   background-repeat:no-repeat; background-size:cover; background-position:var(--bgx) var(--bgy);
   border:1px solid rgba(255,255,255,.08); border-radius:16px;
-  overflow: visible; /* allow tooltips to extend beyond the image */
+  overflow: visible;
 }
 
 /* Accessibility: hide screen-reader-only text */
@@ -109,7 +110,7 @@ a{color:var(--fg); text-decoration:none}
 .sdt-icon .caption{
   position:absolute;
   top:50%;
-  left: calc(100% + 10px);   /* always to the right */
+  left: calc(100% + 10px);
   transform: translateY(-50%);
   display:inline-block;
   padding:10px 12px;
@@ -120,8 +121,8 @@ a{color:var(--fg); text-decoration:none}
   box-shadow:0 12px 28px rgba(0,0,0,.45);
   opacity:0; pointer-events:none; transition:opacity .18s ease;
   z-index:10000;
-  white-space: nowrap;                 /* wrap to fit text */
-  max-width: clamp(220px, 36vw, 520px);
+  white-space: nowrap;
+  max-width: none;
   line-height:1.35;
 }
 .sdt-icon .caption strong{display:block; font-weight:800; margin-bottom:4px; letter-spacing:.2px}
@@ -144,13 +145,120 @@ a{color:var(--fg); text-decoration:none}
 .sdt-icon:hover .caption,
 .sdt-icon:focus-visible .caption{ opacity:1; }
 
-/* Icon placements (tweak by 1–2%) */
+/* Icon placements — DESKTOP */
 .icon-competence-1{top:30%; left:58%}
 .icon-competence-2{top:44%; left:58%}
 .icon-autonomy-1{top:30%; left:83%}
 .icon-autonomy-2{top:44%; left:83%}
 .icon-relatedness-1{top:66%; left:72%}
 .icon-relatedness-2{top:79%; left:72%}
+
+/* ===== SDT grid — MOBILE (card grid fallback) ===== */
+@media (max-width: 768px) {
+  .sdt-grid {
+    /* Remove background image and aspect ratio */
+    background-image: none;
+    aspect-ratio: unset;
+    
+    /* Convert to CSS grid */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px;
+    background: var(--panel);
+  }
+  
+  /* Hide the sr-only column headers on mobile */
+  .sdt-grid > .sr-only {
+    display: none;
+  }
+  
+  /* Reset icon positioning — now flow in grid */
+  .sdt-icon {
+    position: relative;
+    top: unset !important;
+    left: unset !important;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 12px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    transition: background .2s ease, transform .18s ease;
+  }
+  
+  .sdt-icon::before {
+    display: none; /* Remove the shadow pseudo-element */
+  }
+  
+  .sdt-icon:hover,
+  .sdt-icon:focus-visible {
+    background: rgba(255,255,255,.06);
+    transform: translateY(-2px);
+  }
+  
+  .sdt-icon img {
+    width: 52px !important;
+    height: 52px !important;
+    margin-bottom: 10px;
+  }
+  
+  /* Show caption always on mobile (no hover needed) */
+  .sdt-icon .caption {
+    position: static;
+    transform: none;
+    opacity: 1;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    text-align: center;
+    white-space: normal;
+    pointer-events: auto;
+  }
+  
+  .sdt-icon .caption::before {
+    display: none; /* Hide the arrow */
+  }
+  
+  .sdt-icon .caption strong {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  
+  .sdt-icon .caption em {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
+
+/* Even smaller screens: single column */
+@media (max-width: 420px) {
+  .sdt-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .sdt-icon {
+    flex-direction: row;
+    gap: 14px;
+    padding: 14px;
+    text-align: left;
+  }
+  
+  .sdt-icon img {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .sdt-icon .caption {
+    text-align: left;
+  }
+}
 
 /* Contact: logo next to OpsAdvising */
 #contact{margin-top:30px}
@@ -175,55 +283,10 @@ a{color:var(--fg); text-decoration:none}
 .footer-brand{display:flex; align-items:center; gap:8px; margin-bottom:6px}
 .footer-logo{height:24px; width:auto; display:block}
 
-/* Let tooltips spill past the stage */
-.sdt-grid{ overflow: visible; }
-
-/* Base icon layer; bump only the hovered/focused one to the top */
-.sdt-icon{ position:absolute; z-index:1; }
-.sdt-icon:hover,
-.sdt-icon:focus-within,
-.sdt-icon:focus-visible{ z-index:9999; }
-
-/* Tooltip: right side, single line, hidden by default, on top of everything */
-.sdt-icon .caption{
-  position:absolute;
-  top:50%;
-  left: calc(100% + 10px);
-  transform: translateY(-50%);
-  display:inline-block;
-  padding:10px 12px;
-  border-radius:10px;
-  background:rgba(15,17,22,.92);
-  color:#e9eaee;
-  border:1px solid rgba(255,255,255,.15);
-  box-shadow:0 12px 28px rgba(0,0,0,.45);
-
-  /* hover-only visibility */
-  opacity:0;                     /* hidden by default */
-  transition: opacity .18s ease;
-  pointer-events:none;           /* tooltip doesn't steal hover/clicks */
-  z-index:10000;
-
-  /* one-line, no wrapping; remove max-width for full length */
-  white-space: nowrap;
-  max-width:none;
-  line-height:1.35;
+/* Footer responsive */
+@media (max-width: 600px) {
+  .oa-footer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
-
-.sdt-icon .caption::before{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:-6px;
-  transform:translateY(-50%);
-  width:0; height:0;
-  border-top:6px solid transparent;
-  border-bottom:6px solid transparent;
-  border-right:6px solid rgba(15,17,22,.92);
-  filter: drop-shadow(-1px 0 0 rgba(255,255,255,.15));
-}
-
-/* Show caption on hover/keyboard focus */
-.sdt-icon:hover .caption,
-.sdt-icon:focus-visible .caption{ opacity:1; }
-
