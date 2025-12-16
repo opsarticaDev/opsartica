@@ -102,7 +102,7 @@ a{color:var(--fg); text-decoration:none}
   object-fit:contain !important; display:block !important;
   filter:drop-shadow(0 8px 14px rgba(0,0,0,.45));
 }
-.sdt-icon:hover{transform:translateY(-2px); filter:saturate(1.05)}
+.sdt-icon:hover{transform:translateY(-2px); filter:saturate(1.05)}; z-index:9999}
 .sdt-icon:focus-within, .sdt-icon:focus-visible{z-index:9999}
 .sdt-icon:focus-visible{outline:3px solid rgba(119,7,55,.45); outline-offset:3px}
 
