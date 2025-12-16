@@ -1,0 +1,34 @@
+.hero {
+  position: relative;
+}
+
+.hero .container.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.arm-viewer {
+  position: absolute;
+  right: max(4vw, 40px);
+  top: 52%;
+  transform: translateY(-50%);
+  width: clamp(260px, 26vw, 420px);
+  height: clamp(260px, 26vw, 420px);
+}
+
+.arm-viewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile and tablet: move the arm below the text */
+@media (max-width: 768px) {
+  .arm-viewer {
+    position: static;
+    margin: 2.5rem auto 0;
+    transform: none;
+    width: min(80vw, 360px);
+    height: 320px;
+  }
+}
